@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>큐텐재팬 성공 전략 가이드북 인포그래픽</title>
+    <!-- 썸네일 설정 -->
+    <meta property="og:image" content="icon.png">
+    <meta property="og:title" content="큐텐재팬 성공 전략 가이드북 인포그래픽">
+    <meta property="og:description" content="큐텐재팬 시장의 특성과 고객 분석부터, 실전 판매 전략, 프로모션, 수익 관리까지 한눈에 정리한 가이드북입니다.">
+    <!-- 파비콘 설정 -->
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="shortcut icon" type="image/png" href="icon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/subsets/Paperlogy-dynamic-subset.css" type="text/css"/>
+    <style>
+        body {
+            font-family: "Paperlogy", -apple-system, BlinkMacSystemFont, "Segoe UI",Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            background-color: #ffffff;
+            color: #172b4d;
+        }
+        .watermark-fixed { display: none; }
+        .watermark-center-fixed {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            width: 98vw;
+            max-width: 1800px;
+            height: auto;
+            aspect-ratio: 5/1;
+            opacity: 0.11;
+            pointer-events: none;
+            user-select: none;
+            background: url('watermakr.png') no-repeat center center;
+            background-size: contain;
+        }
+        .chart-container {
+            position: relative;
+            margin: auto;
+            height: 45vh;
+            width: 100%;
+            max-width: 900px;
+            max-height: 450px;
+        }
+        .kpi-card {
+            background: linear-gradient(145deg, #e6f0ff, #d1e0f8);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 82, 204, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 82, 204, 0.15);
+        }
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #0052cc, #0065ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .section-subtitle {
+            font-size: 1.25rem;
+            color: #4c5f7a;
+            max-width: 800px;
+            margin: 0 auto 2.5rem auto;
+            text-align: center;
+        }
+        .content-card {
+             background-color: #f0f2f5;
+             border: 1px solid #dfe3e8;
+             border-radius: 1rem;
+             padding: 1.5rem;
+        }
+        .outlook-card {
+            background-color: #f0f2f5;
+            border-radius: 0.5rem;
+        }
+        .outlook-card button {
+            background-color: #e6f0ff;
+            color: #0052cc;
+        }
+        .outlook-card button:hover {
+            background-color: #d1e0f8;
+        }
+        .pdf-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: #0052cc;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: background-color 0.2s;
+        }
+        .pdf-button:hover {
+            background-color: #0065ff;
+        }
+
+        @page {
+            size: A4 landscape;
+            margin: 1.5cm;
+        }
+
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background-color: #fff;
+            }
+            .pdf-button, header.py-20, footer.mt-16 {
+                display: none;
+            }
+            main.container {
+                padding: 0;
+                margin: 0;
+                max-width: 100%;
+            }
+            .printable-group {
+                break-inside: avoid;
+            }
+            section {
+                break-inside: avoid-page;
+                padding-top: 1cm;
+                margin-bottom: 1cm;
+            }
+            section:first-child {
+                padding-top: 0;
+            }
+            h2, h3, h1, .section-subtitle {
+                break-after: avoid;
+            }
+            .content-card, .kpi-card, .grid > * {
+                break-inside: avoid;
+            }
+            .outlook-content {
+                display: block !important;
+            }
+            .outlook-card button span:last-child {
+                display: none;
+            }
+        }
+
+        /* .content-card ul {
+        } */
+        .custom-list .item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.7em;
+        }
+        .custom-list .dot {
+            min-width: 1.2em;
+            font-size: 1.2em;
+            line-height: 1.7;
+        }
+        .custom-list .text {
+            flex: 1;
+            word-break: keep-all;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- <button id="pdf-button" class="pdf-button">📄 PDF로 저장</button> -->
+
+    <header class="bg-gray-50 py-20 text-center">
+        <div class="container mx-auto px-6">
+            <h1 class="text-5xl md:text-7xl font-black text-gray-900 leading-tight">큐텐재팬 운영 가이드북</h1>
+            <p class="text-xl text-gray-600 mt-4 max-w-3xl mx-auto">큐텐재팬 시장의 특성과 고객 분석부터, 실전 판매 전략, 프로모션, 수익 관리, 운영비용까지<br>일본 온라인 판매를 위한 체크리스트를 한눈에 정리한 가이드북입니다.</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16">
+
+        <section id="market-analysis" class="text-center mb-24">
+            <h2 class="section-title">큐텐재팬이란?</h2>
+            <p class="section-subtitle">EBAY JAPAN이 운영하는 일본 4대 오픈마켓 중 하나로, K-뷰티와 패션에 열광하는<br>일본의 젊은 소비자들이 모여있는 기회의 땅입니다.</p>
+            
+            <div class="printable-group">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    <div class="kpi-card">
+                        <h3 class="text-xl font-bold text-blue-800">핵심 고객 여성 비중</h3>
+                        <p class="text-5xl font-extrabold text-gray-900 mt-2">76%</p>
+                    </div>
+                    <div class="kpi-card">
+                        <h3 class="text-xl font-bold text-blue-800">타겟 고객층 인지도 (15-39세 여성)</h3>
+                        <p class="text-5xl font-extrabold text-gray-900 mt-2">84%</p>
+                    </div>
+                     <div class="kpi-card">
+                        <h3 class="text-xl font-bold text-blue-800">실거래 1위 카테고리 (뷰티)</h3>
+                        <p class="text-5xl font-extrabold text-gray-900 mt-2">73%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="printable-group">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="content-card p-6">
+                        <h3 class="text-2xl font-bold mb-4">주요 고객 연령대 (여성)</h3>
+                        <p class="text-gray-600 mb-6">전체 고객 중 10대~30대 여성 고객이 절반 이상을 차지합니다.<br>(아래 그래프는 여성만을 대상으로 한 연령대 분포입니다.)</p>
+                        <div class="chart-container"><canvas id="customerAgeChart"></canvas></div>
+                    </div>
+                    <div class="content-card p-6">
+                        <h3 class="text-2xl font-bold mb-4">등록된 상품 수 기준 인기 카테고리</h3>
+                        <p class="text-gray-600 mb-6">상품 수 기준으로는 패션/생활용품이 가장 많은 비중을 차지하며, 실제 거래와는 다른 흐름을 보입니다.</p>
+                        <div class="chart-container"><canvas id="registeredCategoryChart"></canvas></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="strengths" class="text-center mb-24">
+            <h2 class="section-title">큐텐재팬, 왜 지금 시작해야 할까요?</h2>
+            <p class="section-subtitle">강력한 팬덤을 가진 플랫폼은 판매자에게 유리한 환경을 제공합니다.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="content-card text-left p-6">
+                    <div class="text-5xl mb-4">👩🏻‍🦰</div>
+                    <h3 class="text-xl font-bold mb-2">젊은 여성 고객층</h3>
+                    <p class="text-gray-600">주 고객은 10~30대 여성으로, 트렌드에 민감하며 새로운 한국 상품에 대한 수용도가 매우 높습니다.</p>
+                </div>
+                <div class="content-card text-left p-6">
+                    <div class="text-5xl mb-4">🧴</div>
+                    <h3 class="text-xl font-bold mb-2">한국 상품의 인기</h3>
+                    <p class="text-gray-600">플랫폼 자체가 '한국 트렌드에 민감한 고객'을 끌어모으는 구조로, 한국 셀러에게 유리한 고지를 제공합니다.</p>
+                </div>
+                <div class="content-card text-left p-6">
+                    <div class="text-5xl mb-4">🚀</div>
+                    <h3 class="text-xl font-bold mb-2">낮은 진입장벽</h3>
+                    <p class="text-gray-600">타 플랫폼 대비 초기 진입 장벽이 낮아, 일본 시장에 처음 도전하는 셀러들에게 훌륭한 출발점이 됩니다.</p>
+                </div>
+                 <div class="content-card text-left p-6">
+                    <div class="text-5xl mb-4">✨</div>
+                    <h3 class="text-xl font-bold mb-2">차별화된 쇼핑 경험</h3>
+                    <p class="text-gray-600">'메가와리' 등 강력한 프로모션으로 고객을 플랫폼에 머무르게 만드는 강력한 무기를 갖추고 있습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="customer-journey" class="text-center mb-24">
+            <h2 class="section-title">고객의 구매 여정: 신뢰와 안정감</h2>
+            <p class="section-subtitle whitespace-nowrap" style="white-space:nowrap;">일본 소비자들은 처음 구매하는 상품에 대해 '이걸 사도 괜찮을까?'라는 신뢰와 안정감을 매우 중요하게 생각합니다.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="content-card p-6">
+                    <h3 class="text-2xl font-bold mb-4" style="margin-top:0;">고객의 첫걸음: SNS에서 시작되는 여정</h3>
+                    <div class="custom-list text-left text-gray-700">
+                        <div class="item"><span class="dot">•</span><span class="text"><strong>외부 채널에서 인지:</strong> 인스타그램, 유튜브 등 SNS에서 상품의 매력과 후기를 접합니다. 다양한 채널에서 정보를 얻으며, 트렌드에 민감하게 반응합니다.</span></div>
+                        <div class="item"><span class="dot">•</span><span class="text"><strong>플랫폼으로 유입:</strong> 관심이 생기면 큐텐재팬 앱을 켜고, 상품명을 검색하거나 구매 링크로 바로 이동합니다. 대부분 특정 상품을 타깃으로 유입됩니다.</span></div>
+                        <div class="item"><span class="dot">•</span><span class="text"><strong>신뢰 확인 후 구매:</strong> 상세 설명과 리뷰를 꼼꼼히 확인한 뒤, 신뢰가 생기면 구매로 이어집니다. 실제 구매자들의 경험이 중요한 판단 기준이 됩니다.</span></div>
+                    </div>
+                </div>
+                <div class="content-card p-6">
+                    <h3 class="text-2xl font-bold mb-4" style="margin-top:0;">구매를 결정짓는 열쇠</h3>
+                    <div class="custom-list text-left text-gray-700">
+                        <div class="item"><span class="dot">•</span><span class="text"><strong>리뷰 수와 별점:</strong> 다른 구매자들의 평가를 꼼꼼히 확인합니다. 별점이 높고 리뷰가 많을수록 신뢰도가 올라가며, 실제 구매로 이어질 확률이 높아집니다.</span></div>
+                        <div class="item"><span class="dot">•</span><span class="text"><strong>상세 설명과 성분:</strong> 믿을 수 있는 정보와 자신에게 맞는지 여부를 확인합니다.</span></div>
+                        <div class="item"><span class="dot">•</span><span class="text"><strong>배송일 및 반품 가능 여부:</strong> 배송과 반품 정책이 명확한지 중요하게 봅니다. 빠른 배송은 소비자에게 큰 신뢰를 줍니다.</span></div>
+                        <div class="item"><span class="dot">•</span><span class="text"><strong>사은품(おまけ) 유무:</strong> 추가 혜택이 있는지도 구매 결정에 영향을 줍니다. 사은품이나 이벤트가 있으면 구매를 망설이던 고객도 쉽게 결제하게 됩니다.</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="promotion" class="text-center mb-24">
+            <h2 class="section-title">매출을 끌어올리는 4가지 프로모션</h2>
+            <p class="section-subtitle whitespace-nowrap" style="white-space:nowrap;">큐텐재팬이 제공하는 강력한 내부 프로모션 도구들을 적극적으로 활용하여 매출을 극대화할 수 있습니다.</p>
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="content-card text-left p-6 transition-transform duration-200 hover:scale-105 hover:shadow-lg">
+                    <div class="text-4xl mb-2">🚀</div>
+                    <h3 class="text-xl font-bold mb-2">스마트세일즈</h3>
+                    <p class="text-gray-600">매출 발생 시에만 수수료를 내는 성과형 광고(CPS) 방식으로, 효율적인 예산 운영이 가능합니다.</p>
+                </div>
+                 <div class="content-card text-left p-6 transition-transform duration-200 hover:scale-105 hover:shadow-lg">
+                    <div class="text-4xl mb-2">🔝</div>
+                    <h3 class="text-xl font-bold mb-2">파워랭크업</h3>
+                    <p class="text-gray-600">저렴한 비용으로 상품을 검색 결과 상단에 자연스럽게 노출시켜 고객 거부감이 적습니다.</p>
+                </div>
+                 <div class="content-card text-left p-6 transition-transform duration-200 hover:scale-105 hover:shadow-lg">
+                    <div class="text-4xl mb-2">📝</div>
+                    <h3 class="text-xl font-bold mb-2">피드백 혜택</h3>
+                    <p class="text-gray-600">구매자가 리뷰 작성 시 Q포인트를 지급하여 상품 신뢰도의 핵심인 리뷰를 확보하는 전략입니다.</p>
+                </div>
+                 <div class="content-card text-left p-6 transition-transform duration-200 hover:scale-105 hover:shadow-lg">
+                    <div class="text-4xl mb-2">🎟️</div>
+                    <h3 class="text-xl font-bold mb-2">단골고객 쿠폰</h3>
+                    <p class="text-gray-600">미니샵 전용 쿠폰으로, 특히 '메가와리' 기간에 중복 사용이 가능해 구매 전환율을 높입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 마진에 영향을 주는 요소들 섹션 (프로모션 바로 아래로 이동) -->
+        <section id="margin-factors" class="text-center mb-24">
+          <h2 class="section-title">마진에 영향을 주는 요소들</h2>
+          <p class="section-subtitle">판매상품의 원가 뿐 아니라 다양한 요소를 확인해야 합니다.</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6 w-full">
+            <div class="content-card font-bold">상품원가</div>
+            <div class="content-card font-bold text-blue-600 bg-blue-50">마케팅비</div>
+            <div class="content-card font-bold">판매 수수료</div>
+            <div class="content-card font-bold text-blue-600 bg-blue-50">운영비용</div>
+            <div class="content-card font-bold text-blue-600 bg-blue-50">프로모션 비용</div>
+            <div class="content-card font-bold">환차손</div>
+            <div class="content-card font-bold text-blue-600 bg-blue-50">배송비</div>
+            <div class="content-card font-bold">변수</div>
+          </div>
+        </section>
+
+        <!-- 운영비용의 구성 섹션 (프로모션 바로 아래로 이동) -->
+        <section id="operation-cost" class="text-center mb-24">
+          <h2 class="section-title">운영비용의 구성</h2>
+          <p class="section-subtitle">운영비용을 구성하는 상세내역을 확인합니다.</p>
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-6 w-full">
+            <div class="content-card">
+              <div class="font-bold text-blue-600 mb-2">포장 및 배송 관련 비용</div>
+              <div class="font-bold">포장비</div>
+              <div class="text-sm text-gray-600">택배박스, 뽁뽁이, 스티커, 테이프, 제품, 비닐 등</div>
+              <div class="font-bold mt-2">배송대행 수수료</div>
+              <div class="text-sm text-gray-600">직접 발송이 아닌 경우, 물류 대행업체 수수료</div>
+              <div class="font-bold mt-2">일본 현지 배송비</div>
+              <div class="text-sm text-gray-600">일본 고객에게 도달하는 마지막 배송비</div>
+            </div>
+            <div class="content-card">
+              <div class="font-bold text-blue-600 mb-2">고객 응대 및 번역 비용</div>
+              <div class="font-bold">CS 대응 인건비</div>
+              <div class="text-sm text-gray-600">직접 응대 시 시간 투자, 외주 시 비용 발생</div>
+              <div class="font-bold mt-2">번역비용</div>
+              <div class="text-sm text-gray-600">상세페이지, 상품명, 광고문구 작성 시 TOOL 사용비용 또는 외주 의뢰 비용</div>
+            </div>
+            <div class="content-card">
+              <div class="font-bold text-blue-600 mb-2">반품 및 클레임 처리</div>
+              <div class="font-bold">반품/교환 비용</div>
+              <div class="text-sm text-gray-600">왕복 배송비, 재포장비용, 제품 폐기</div>
+              <div class="font-bold mt-2">파손/분실/오배송 비용</div>
+              <div class="text-sm text-gray-600">보상금, 쿠폰 제공, 이미지 증빙 작업 등</div>
+            </div>
+            <div class="content-card">
+              <div class="font-bold text-blue-600 mb-2">고정 사업 운영비</div>
+              <div class="font-bold">인건비</div>
+              <div class="text-sm text-gray-600">상품등록, 광고관리, 정산관리 등</div>
+              <div class="font-bold mt-2">툴/플랫폼 구독비</div>
+              <div class="text-sm text-gray-600">이미지 툴, 상세페이지 생성 툴 등</div>
+              <div class="font-bold mt-2">회계/세무관리비</div>
+              <div class="text-sm text-gray-600">3.3%, 부가세 신고, 원천세 등</div>
+            </div>
+            <div class="content-card">
+              <div class="font-bold text-blue-600 mb-2">예비비 및 기타</div>
+              <div class="font-bold">환율 리스크</div>
+              <div class="text-sm text-gray-600">정산 시 환율 하락 → 실 수익 감소</div>
+              <div class="font-bold mt-2">샘플/테스트 비용</div>
+              <div class="text-sm text-gray-600">사업 전 제품 테스트, 성분 검토 등</div>
+              <div class="font-bold mt-2">사은품/포장지 등 이벤트성 비용</div>
+              <div class="text-sm text-gray-600">리뷰 이벤트, 땡큐카드, 사은품 등</div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Q&A 섹션 -->
+        <section id="faq" class="text-center mb-24">
+            <h2 class="section-title">자주 묻는 질문 Q&A</h2>
+            <p class="section-subtitle">셀러들이 가장 많이 궁금해하는 내용을 정리했습니다.</p>
+            <div class="max-w-4xl mx-auto">
+                <div class="outlook-card space-y-2 mb-4">
+                    <button class="w-full text-left p-4 font-bold text-xl flex justify-between items-center" data-target="qa1-content">
+                        <span>📦 포장할 때 필요한 부자재는?</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div id="qa1-content" class="outlook-content hidden px-4 pb-4 text-left text-gray-700">
+                        <ul class="list-disc pl-5">
+                            <li><b>택배박스</b>: 상품 크기에 맞는 박스 준비</li>
+                            <li><b>에어캡(뽁뽁이)</b>: 파손 방지용 완충재</li>
+                            <li><b>테이프</b>: 박스 밀봉용</li>
+                            <li><b>안전봉투(폴리백)</b>: 박스 없이도 포장 가능한 상품이나 라이트 배송 상품에 사용</li>
+                            <li><b>송장 프린트기 및 라벨지</b>: 송장 출력 및 부착을 빠르고 깔끔하게 할 수 있음 (일반 프린터기로 인쇄 가능)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="outlook-card space-y-2 mb-4">
+                    <button class="w-full text-left p-4 font-bold text-xl flex justify-between items-center" data-target="qa2-content">
+                        <span>🔗 셀러샵명이나 URL 주소를 바꾸면 팔로워가 사라지나요?</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div id="qa2-content" class="outlook-content hidden px-4 pb-4 text-left text-gray-700">
+                        <p>팔로워 수는 유지되지만, 기존 주소를 통해 접속했던 유입이 줄 수 있어 초기 단계에만 변경을 권장합니다.</p>
+                    </div>
+                </div>
+                <div class="outlook-card space-y-2 mb-4">
+                    <button class="w-full text-left p-4 font-bold text-xl flex justify-between items-center" data-target="qa3-content">
+                        <span>💳 광고비도 부가세 환급이 되나요?</span>
+                        <span class="transform transition-transform duration-300">▼</span>
+                    </button>
+                    <div id="qa3-content" class="outlook-content hidden px-4 pb-4 text-left text-gray-700">
+                        <p>네, 큐포인트 충전 시 사업자 카드로 결제하면 세무사에게 제출하여 부가세 환급이 가능합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="text-center py-8 mt-16 bg-gray-100">
+        <p class="text-gray-500">© 2025 헨젤쌤. All rights reserved.</p>
+        <p class="text-gray-400 mt-2 text-sm">본 전자책의 저작권은 제작자에게 있으며, 무단 복제 및 배포를 금합니다.<br>상업적 이용, 2차 가공, 온라인 공유 등은 법적 제재를 받을 수 있습니다.</p>
+    </footer>
+
+    <div class="watermark-center-fixed"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // PDF Print Button
+    const pdfButton = document.getElementById('pdf-button');
+    if (pdfButton) {
+        pdfButton.addEventListener('click', () => {
+            window.print();
+        });
+    }
+
+    const chartColors = {
+        blue: 'rgba(0, 82, 204, 0.8)',
+        lightBlue: 'rgba(100, 150, 255, 0.8)',
+        teal: 'rgba(35, 181, 211, 0.8)',
+        yellow: 'rgba(255, 206, 86, 0.8)',
+        grey: 'rgba(201, 203, 207, 0.8)',
+        darkGrey: 'rgba(80, 80, 80, 0.8)',
+        green: 'rgba(75, 192, 192, 0.8)',
+        purple: 'rgba(153, 102, 255, 0.8)',
+        orange: 'rgba(255, 159, 64, 0.8)',
+        pink: 'rgba(255, 99, 132, 0.8)'
+    };
+    
+    const tooltipConfig = {
+        callbacks: {
+            title: function(tooltipItems) {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                return Array.isArray(label) ? label.join(' ') : label;
+            }
+        }
+    };
+
+    // Customer Age Chart (Bar)
+    const customerAgeCtx = document.getElementById('customerAgeChart');
+    if (customerAgeCtx) {
+        new Chart(customerAgeCtx, {
+            type: 'bar',
+            data: {
+                labels: ['10대', '20대', '30대', '40대', '50대', '60대 이상'],
+                datasets: [{
+                    label: '여성 고객 연령 분포',
+                    data: [16, 25, 14, 11, 7, 2],
+                    backgroundColor: [
+                        chartColors.lightBlue,
+                        chartColors.blue,
+                        chartColors.teal,
+                        chartColors.grey,
+                        chartColors.yellow,
+                        chartColors.purple
+                    ],
+                    borderRadius: 5,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, ticks: { callback: value => value + '%' } }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { ...tooltipConfig, callbacks: { ...tooltipConfig.callbacks, label: (c) => ` ${c.raw}%` } },
+                }
+            }
+        });
+    }
+
+    // Registered Category Chart (Doughnut)
+    const registeredCategoryCtx = document.getElementById('registeredCategoryChart');
+    if (registeredCategoryCtx) {
+        new Chart(registeredCategoryCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['여성패션', '생활용품', '뷰티/화장품', '남성/스포츠', '식품', '유아용', '모바일', '디지털', '펫용품', '취미/기타'],
+                datasets: [{ 
+                    data: [37, 23, 10, 6, 6, 5, 5, 4, 2, 2], 
+                    backgroundColor: [
+                        chartColors.darkGrey, chartColors.grey, chartColors.blue, chartColors.teal, 
+                        chartColors.green, chartColors.lightBlue, chartColors.orange, chartColors.yellow, 
+                        chartColors.purple, chartColors.pink
+                    ], 
+                    borderColor: '#fff', 
+                    borderWidth: 4, 
+                    hoverOffset: 15 
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false, cutout: '70%',
+                plugins: {
+                    legend: { position: 'bottom' },
+                    tooltip: { ...tooltipConfig, callbacks: { ...tooltipConfig.callbacks, label: (c) => `${c.label}: ${c.raw}%` } }
+                }
+            }
+        });
+    }
+
+    // Outlook Accordion
+    const outlookButtons = document.querySelectorAll('.outlook-card button');
+    outlookButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.dataset.target;
+            const content = document.getElementById(targetId);
+            const icon = button.querySelector('span:last-child');
+            
+            if (content && icon) {
+                if (content.classList.contains('hidden')) {
+                    content.classList.remove('hidden');
+                    icon.classList.add('rotate-180');
+                } else {
+                    content.classList.add('hidden');
+                    icon.classList.remove('rotate-180');
+                }
+            }
+        });
+    });
+
+});
+</script>
+</body>
+</html>
